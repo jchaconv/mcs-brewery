@@ -8,6 +8,7 @@ public class McsBreweryApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(McsBreweryApplication.class, args);
+
 	}
 
 }

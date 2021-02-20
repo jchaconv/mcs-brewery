@@ -17,7 +17,6 @@ public class BeerController {
 
     private final BeerService beerService;
 
-    //Doesn't need @Autowired
     public BeerController(BeerService beerService) {
         this.beerService = beerService;
     }
@@ -26,5 +25,6 @@ public class BeerController {
     public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
+
 
 }
