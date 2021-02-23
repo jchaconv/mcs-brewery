@@ -139,3 +139,6 @@ Desktop.ini
 ######################
 .eslintcache
 /.idea/
+/target/classes/application.properties
+/target/classes/META-INF/mcs-brewery.kotlin_module
+/target/test-classes/META-INF/mcs-brewery.kotlin_module
