@@ -1,16 +1,16 @@
 package expert.springframework.mcsbrewery.services.v2;
 
-import expert.springframework.mcsbrewery.web.model.BeerDto;
+import expert.springframework.mcsbrewery.web.model.v2.BeerDtoV2;
 
 import java.util.UUID;
 
 public interface BeerServiceV2 {
 
-    BeerDto getBeerById(UUID beerId);
+    BeerDtoV2 getBeerById(UUID beerId);
 
-    BeerDto saveNewBeer(BeerDto beerDto);
+    BeerDtoV2 saveNewBeer(BeerDtoV2 beerDto);
 
-    void updateBeer(UUID beerId, BeerDto beerDto);
+    void updateBeer(UUID beerId, BeerDtoV2 beerDto);
 
     void deleteById(UUID beerId);
 
