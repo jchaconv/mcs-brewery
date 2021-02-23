@@ -1,16 +1,17 @@
 package expert.springframework.mcsbrewery.web.controller;
 
 import expert.springframework.mcsbrewery.services.BeerService;
-import expert.springframework.mcsbrewery.web.model.BeerDtoV2;
+import expert.springframework.mcsbrewery.web.model.BeerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
-//@Deprecated
+@Deprecated
 @Slf4j
 @RequestMapping("/api/v1/beer")
 @RestController
@@ -23,16 +24,16 @@ public class BeerController {
     }
 
     @GetMapping({"/{beerId}"}) //Tomará el valor del @PathVariable
-    public ResponseEntity<BeerDtoV2> getBeer(@PathVariable("beerId") UUID beerId) {
+    public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody BeerDtoV2 beerDto) {
+    public ResponseEntity handlePost(@Valid @RequestBody BeerDto beerDto) {
 
-        BeerDtoV2 savedDto = beerService.saveNewBeer(beerDto);
+        BeerDto savedDto = beerService.saveNewBeer(beerDto);
 
-        log.info("update from msc-brewery");
+        log.info("update from msc-brewery ... BeerController.handlePost");
 
         HttpHeaders headers = new HttpHeaders();
         //todo add hostname to url
@@ -43,7 +44,7 @@ public class BeerController {
     }
 
     @PutMapping({"/{beerId}"})
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDtoV2 beerDto) {
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDto beerDto) {
         beerService.updateBeer(beerId, beerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

@@ -1,7 +1,7 @@
 package expert.springframework.mcsbrewery.web.controller.v2;
 
 import expert.springframework.mcsbrewery.services.v2.BeerServiceV2;
-import expert.springframework.mcsbrewery.web.model.BeerDtoV2;
+import expert.springframework.mcsbrewery.web.model.BeerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,14 +22,14 @@ public class BeerControllerV2 {
     }
 
     @GetMapping({"/{beerId}"}) //Tomará el valor del @PathVariable
-    public ResponseEntity<BeerDtoV2> getBeer(@PathVariable("beerId") UUID beerId) {
+    public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
         return new ResponseEntity<>(beerServiceV2.getBeerById(beerId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody BeerDtoV2 beerDto) {
+    public ResponseEntity handlePost(@RequestBody BeerDto beerDto) {
 
-        BeerDtoV2 savedDto = beerServiceV2.saveNewBeer(beerDto);
+        BeerDto savedDto = beerServiceV2.saveNewBeer(beerDto);
 
         HttpHeaders headers = new HttpHeaders();
         //todo add hostname to url
@@ -40,7 +40,7 @@ public class BeerControllerV2 {
     }
 
     @PutMapping({"/{beerId}"})
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDtoV2 beerDto) {
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDto beerDto) {
         beerServiceV2.updateBeer(beerId, beerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

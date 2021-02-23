@@ -1,6 +1,6 @@
 package expert.springframework.mcsbrewery.services;
 
-import expert.springframework.mcsbrewery.web.model.BeerDtoV2;
+import expert.springframework.mcsbrewery.web.model.BeerDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,8 +10,8 @@ import java.util.UUID;
 @Service
 public class BeerServiceImpl implements BeerService {
     @Override
-    public BeerDtoV2 getBeerById(UUID beerId) {
-        return BeerDtoV2.builder().id(UUID.randomUUID())
+    public BeerDto getBeerById(UUID beerId) {
+        return BeerDto.builder().id(UUID.randomUUID())
                 .beerName("Galaxy Cat")
                 .beerStyle("Pale Ale from mcs brewery")
                 .build();
@@ -19,12 +19,12 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public BeerDtoV2 saveNewBeer(BeerDtoV2 beerDto) {
-        return BeerDtoV2.builder().id(UUID.randomUUID()).build();
+    public BeerDto saveNewBeer(BeerDto beerDto) {
+        return BeerDto.builder().id(UUID.randomUUID()).build();
     }
 
     @Override
-    public void updateBeer(UUID beerId, BeerDtoV2 beerDto) {
+    public void updateBeer(UUID beerId, BeerDto beerDto) {
         //todo impl
     }
 
